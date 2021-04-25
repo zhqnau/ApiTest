@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试平台</title>
+    <style>
+        body{
+            background: url("/static/sitdownplease.jpg");
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body >
+
+    <div style="text-align: center">
+
+        <h1 style="color: white">
+            <br>
+            欢迎 {{ usename }} 使用接口测试平台
+        </h1>
+        {#        放入连接传送门#}
+        <div style="border:1px solid black;border-radius: 10px 10px 10px 10px;text-align: center;
+                    background-color: #e3ffe3;opacity: 0.8;color: white; margin-left: 300px;margin-right: 300px">
+            <h3 style="color: #3e2935">欢迎使用传送：</h3>
+            <strong>
+                {% for i in herfs %}
+                    <a href="{{ i.herf }}" target="_blank" style="color: #353C48;text-decoration: none">{{ i.name }}</a>
+                    <br>
+                
+                {% endfor %}
+                
+            </strong>
+
+        </div>
+        <br>
+        <div style="border:1px solid black;border-radius: 10px 0px 0px 10px;text-align: center;
+                    background-color: #e3ffe3;opacity: 0.8;color: white; margin-left: 300px;margin-right: 300px">
+            <h3 style="color: #3e2935">您的项目：</h3>
+            <span style="color: black">
+            {#                项目列表循环类似传送#}
+            </span>
+            <br>
+
+        </div>
+        <br>
+        <div style="border:1px solid black;border-radius: 10px 0px 0px 10px;text-align: center;
+                    background-color: #e3ffe3;opacity: 0.8;color: white; margin-left: 300px;margin-right: 300px">
+            <h3 style="color: #3e2935">最新消息：</h3>
+            <span style="color: black">
+            帮助页面上线；<br>
+            后台开启；<br>
+            项目列表上线；<br>
+            </span>
+            <br>
+
+        </div>
+        <br>
+        <div style="border:1px solid black;border-radius: 10px 0px 0px 10px;text-align: center;
+                    background-color: #e3ffe3;opacity: 0.8;color: white; margin-left: 300px;margin-right: 300px">
+            <br>
+
+            <textarea id="tui_input" cols="30" rows="10" placeholder="注意弹幕礼仪"
+                      style="border-radius: 5px;padding-left: 10px;box-shadow: 4px 4px 9px grey"></textarea>
+            <br>
+            <button style="border-radius: 0px 0px 50px 50px;width: 100px" onclick="tui()">喝！呸！</button>
+            <br><br>
+        </div>
+
+        </div>
+
+
+    </div>
+    <script>
+        function tui() {
+            $.get("/tui/",{
+                "tui_text":document.getElementById('tui_input').value,
+            },function (ret) {
+                alert('成功吐槽！')
+
+            })
+
+        }
+    </script>
+
+</body>
+</html>
